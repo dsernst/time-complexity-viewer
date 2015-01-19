@@ -23,6 +23,6 @@ var run = function () {
   var func = getInput()
   var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
   inputSizes.forEach(function (size) {
-    console.log(profile(func, size))
+    console.log(size, profile(func, size))
   })
 }
