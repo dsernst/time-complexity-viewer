@@ -31,17 +31,17 @@ Once the project moves into development, the press release can be used as a touc
   Mastering it often involves learning Big O notation, learning new vocabulary to classify algorithms ("constant time", "linearithmic time", "double exponential time"), and learning how to translate lines of code into time complexity. Too many developers neglect investing in these vital skills.
 
 ## Solution ##
-  **The Time Complexity Viewer** allows a user to paste in a JavaScript function, which is then run with various input sizes. Each result is profiled to display back to the user as a graph, so that the user can *see* just how effective their algorithm really is.
+  The Time Complexity Viewer allows a user to paste in a JavaScript function, which is then run with various input sizes. Each result is profiled to display back to the user as a graph, so that the user can *see* just how effective their algorithm really is.
 
 ## Quote from You ##
-  "Mastering time complexity separates the script kiddies from the software engineers." -- *Gaia, Mother of All Things*
+  *"Mastering time complexity separates the script kiddies from the software engineers."* — Gaia, Mother of All Things
 
 ## How to Get Started ##
-  All you have to do is load up **The Time Complexity Viewer** in your favorite web browser & paste in a JavaScript function. Then hold onto your seat!
+  All you have to do is load up The Time Complexity Viewer in your favorite web browser & paste in a JavaScript function. Then hold onto your seat!
 
 
 ## Customer Quote ##
-  "I used to be a mediocre developer. Now I have a job at Google. And it's all thanks to The Time Complexity Viewer!" -- *Larry Page*
+  *"I used to be a mediocre developer. Now I have a job at Google. And it's all thanks to The Time Complexity Viewer!"* — Larry Page
 
 ## Closing and Call to Action ##
-  Become a better developer, try out **The Time Complexity Viewer** today: http://mvp.dsernst.com/
+  Become a better developer, try out The Time Complexity Viewer today: http://mvp.dsernst.com/
