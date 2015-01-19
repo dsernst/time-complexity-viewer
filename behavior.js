@@ -1,4 +1,9 @@
-// var input = $('#input').val();
+var inputFunc = ''
+
+var getInput = function() {
+  inputFunc = $('#script').val()
+  console.log(inputFunc)
+}
 
 var profile = function (func, input) {
   var start = Date.now()

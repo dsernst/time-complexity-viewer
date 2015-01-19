@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="behavior.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta charset="UTF-8">
   </head>
@@ -15,7 +16,7 @@
     <div class="inputArea col-md-6">
       <p>Paste your script in here:</p>
       <textarea id="script" class="form-control" rows="20" placeholder="function (n) {&#13;&#10;&#13;&#10;  // your code&#13;&#10;&#13;&#10;}"></textarea><br>
-      <button class="btn btn-primary btn-block">Go!</button>
+      <button class="btn btn-primary btn-block" onclick="getInput()">Go!</button>
     </div>
     <div class="results col-md-4">
       <h3>Results:</h3>
