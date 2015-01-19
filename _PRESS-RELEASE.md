@@ -1,4 +1,4 @@
-# Project Name #
+# The Time Complexity Viewer #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,31 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  **The Time-Complexity Viewer**
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Forge stronger developers
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  This revolutionary product illustrates the computation time of a function, as its input grows. The user is given a visual graph for the effectiveness of their algorithm.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  Time complexity is fundamental to effective software engineering. But it can be a difficult concept for new developers to learn, and even harder to internalize how any particular function is affected. 
+
+  Mastering it often involves learning Big O notation, learning new vocabulary to classify algorithms ("constant time", "linearithmic time", "double exponential time"), and learning how to translate lines of code into time complexity. Too many developers neglect investing in these vital skills.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  **The Time Complexity Viewer** allows a user to paste in a JavaScript function, which is then run with various input sizes. Each result is profiled to display back to the user as a graph, so that the user can *see* just how effective their algorithm really is.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  "Mastering time complexity separates the script kiddies from the software engineers." -- *Gaia, Mother of All Things*
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  All you have to do is load up **The Time Complexity Viewer** in your favorite web browser & paste in a JavaScript function. Then hold onto your seat!
+
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "I used to be a mediocre developer. Now I have a job at Google. And it's all thanks to The Time Complexity Viewer!" -- *Larry Page*
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  Become a better developer, try out **The Time Complexity Viewer** today: http://mvp.dsernst.com/
