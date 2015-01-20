@@ -71,10 +71,7 @@ var generateChart = function () {
 }
 
 var print = function (size, time, round) {
-  // var $line = $('<li>')
-  // $line.append('<span class="size">' + size + '</span>: ')
-  // $line.append('<span class="time">' + time + '</span>ms')
-  // $('.results ul').append($line)
+  // $('.results ul').append('<li><span class="size">'+size+'</span>: <span class="time">'+time+'</span>ms</li>')
   results[round].push(time)
 
   chart.load({
