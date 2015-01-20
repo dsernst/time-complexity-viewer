@@ -1,7 +1,7 @@
 // Polyfill performance.now
 performance.now = function () {return performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {return new Date().getTime()}}()
 
-var inputSizes = {
+var inputs = {
   number: [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000],
   string: ["a","ab","abc","abcd","abcde","abcdef","abcdefg","abcdefgh","abcdefghi","abcdefghij","abcdefghijk"],
   array: [[1],[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,5],[1,2,3,4,5,6],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8,9]]
@@ -37,7 +37,7 @@ function run () {
   results.push([])
   var func = getInput();
   (function (round) {
-    inputSizes[mode].forEach(function (size) {
+    inputs[mode].forEach(function (size) {
       setTimeout(print.bind(null, size, profile(func, size), round), 0)
     })
   })(round)
@@ -50,12 +50,18 @@ function profile (func, size) {
 }
 
 function print (size, time, round) {
+  var inputSizes = inputs[mode].map(function (input) {
+    if (mode !== 'number') {
+      return input.length
+    }
+    return input
+  })
   // $('.results ul').append('<li><span class="size">'+size+'</span>: <span class="time">'+time+'</span>ms</li>')
   results[round].push(time)
 
   chart.load({
     columns: [
-      ['sizes'].concat(inputSizes[mode]),
+      ['sizes'].concat(inputSizes),
       [function(){return 'round ' + (round + 1)}()].concat(results[round])
     ]
   })
