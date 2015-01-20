@@ -77,7 +77,7 @@ var run = function () {
       },
       x: {
         label: {
-          text: 'input size',
+          text: 'input size (n)',
           position: 'outer-center'
         }
       }
