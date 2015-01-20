@@ -1,10 +1,11 @@
 function sampleFunc (n) {
+  var a
   for (var i = 0; i < n; i++) {
-    3 * n
-    n > 9000
+    a = 3 * n
+    a += n > 9000
+    a += 12122124 - 12313 % n
     "cat" + "dog" === n
-    12122124 - 12313 % n
-    Math.floor(n / 124)
+    a += Math.floor(n / 124)
   }
   return 'this is an example'
 }
@@ -13,7 +14,12 @@ $(function() {
 })
 
 var getInput = function () {
-  return $('#script').val() || sampleFunc
+  var func = $('#script').val()
+  if (!func) {
+    func = sampleFunc
+    $('#script').val(sampleFunc.toString())
+  }
+  return func
 }
 
 var profile = function (func, input) {
