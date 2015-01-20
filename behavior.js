@@ -61,6 +61,7 @@ var chart
 $(function () {
   chart = c3.generate({
     bindto: '#chart',
+    legend: {show: false},
     data: {
       columns: [
       ],
@@ -76,7 +77,7 @@ $(function () {
       x: {
         label: {
           text: 'input size',
-          position: 'outer-middle'
+          position: 'outer-center'
         }
       }
     }
