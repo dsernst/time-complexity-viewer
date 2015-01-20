@@ -63,11 +63,15 @@ function print (size, time, round) {
   // $('.results ul').append('<li><span class="size">'+size+'</span>: <span class="time">'+time+'</span>ms</li>')
   results[round].push(time)
 
+  var xes = {}
+  xes['round ' + (round + 1)] = 'size ' + (round + 1)
+
   chart.load({
     columns: [
-      ['sizes'].concat(inputSizes),
+      [function(){return 'size ' + (round + 1)}()].concat(inputSizes),
       [function(){return 'round ' + (round + 1)}()].concat(results[round])
-    ]
+    ],
+    xs: xes,
   })
 }
 
@@ -77,8 +81,7 @@ function generateChart () {
     bindto: '#chart',
     legend: {show: false},
     data: {
-      columns: [],
-      x: 'sizes'
+      columns: []
     },
     axis: {
       y: {
