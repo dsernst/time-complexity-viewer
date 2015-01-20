@@ -1,0 +1,19 @@
+{
+  "name": "The Time Complexity Viewer",
+  "version": "1.0.0",
+  "homepage": "http://mvp.dsernst.com",
+  "authors": [
+    "David Ernst <git@dsernst.com>"
+  ],
+  "description": "Illustrates the computation time of a function, as its input grows.",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
