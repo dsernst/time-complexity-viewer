@@ -60,6 +60,7 @@ var print = function (size, time) {
 
 var run = function () {
   $('.results p').hide()
+  var format = d3.format(',');
   chart = c3.generate({
     bindto: '#chart',
     legend: {show: false},
@@ -81,6 +82,14 @@ var run = function () {
           position: 'outer-center'
         }
       }
+    },
+    tooltip: {
+        format: {
+            title: function (d) { return 'n= ' + format(d); },
+            value: function (value) {
+                return format(value) + " ms";
+            }
+        }
     }
   });
 
