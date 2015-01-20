@@ -1,20 +1,23 @@
 // Polyfill performance.now
 performance.now = function () {return performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {return new Date().getTime()}}()
 
-var inputs = {
-  number: [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000],
-  string: ["a","ab","abc","abcd","abcde","abcdef","abcdefg","abcdefgh","abcdefghi","abcdefghij","abcdefghijk","abcdefghijkl","abcdefghijklm","abcdefghijklmn","abcdefghijklmno","abcdefghijklmnop","abcdefghijklmnopq","abcdefghijklmnopqr","abcdefghijklmnopqrs","abcdefghijklmnopqrst","abcdefghijklmnopqrstu"],
-  array: [[1],[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,5],[1,2,3,4,5,6],[1,2,3,4,5,6,7],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8,9]]
-}
 var results = []
 var round = -1
 var chart
+var userInput
+var mode
 
 function setMode () {
   mode = $('.inputArea select').val()
   $('#script').attr({'placeholder': sampleFunctions[mode].toString()})
+  userInput = JSON.parse($('.results textarea').val())
+  if (_.find(sampleInputs, function (input) {return "" + input === "" + userInput})) {
+    userInput = sampleInputs[mode]
+    $('.results textarea').val(JSON.stringify(userInput))
+  }
 }
 $(function () {
+  $('.results textarea').val(JSON.stringify(sampleInputs['number']))
   setMode()
 })
 
