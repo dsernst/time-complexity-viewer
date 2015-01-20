@@ -9,6 +9,8 @@ performance.now = (function() {
 })();
 
 var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
+var results = []
+var chart
 
 function sampleFunc (n) {
   var a
@@ -41,8 +43,6 @@ var profile = function (func, input) {
   return (performance.now() - start).toFixed(4)
 }
 
-var results = []
-
 var print = function (size, time) {
   // var $line = $('<li>')
   // $line.append('<span class="size">' + size + '</span>: ')
@@ -57,7 +57,6 @@ var print = function (size, time) {
   })
 }
 
-var chart
 
 var run = function () {
   $('.results p').hide()
