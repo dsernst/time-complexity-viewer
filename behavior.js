@@ -1,5 +1,5 @@
 // Polyfill performance.now
-performance.now = function () {return performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {return new Date().getTime()}}();
+performance.now = function () {return performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {return new Date().getTime()}}()
 
 var inputSizes = {
   number: [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000],
@@ -11,7 +11,7 @@ var round = -1
 var chart
 
 function setMode () {
-  mode = $('.inputArea select').val();
+  mode = $('.inputArea select').val()
   $('#script').attr({'placeholder': sampleFunctions[mode].toString()})
 }
 $(function () {
@@ -45,10 +45,9 @@ function run () {
 
 function profile (func, size) {
   var start = performance.now()
-  var results = eval( '(' + func + ')').call(null, size);
+  var results = eval( '(' + func + ')').call(null, size)
   return (performance.now() - start).toFixed(4)
 }
-
 
 function print (size, time, round) {
   // $('.results ul').append('<li><span class="size">'+size+'</span>: <span class="time">'+time+'</span>ms</li>')
@@ -61,7 +60,6 @@ function print (size, time, round) {
     ]
   })
 }
-
 
 function generateChart () {
   var format = d3.format(',')
@@ -87,12 +85,12 @@ function generateChart () {
       }
     },
     tooltip: {
-        format: {
-            title: function (d) { return 'n = ' + format(d); },
-            value: function (value) {
-                return format(value) + " ms";
-            }
+      format: {
+        title: function (d) { return 'n = ' + format(d) },
+        value: function (value) {
+          return format(value) + " ms"
         }
+      }
     }
-  });
+  })
 }
