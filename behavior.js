@@ -6,21 +6,19 @@ var inputSizes = {
   string: [],
   array: []
 }
-var mode = "number"
 var results = []
 var round = -1
 var chart
 
-$(function() {
-  setMode()
-})
-
-var setMode = function() {
+function setMode () {
   mode = $('.inputArea select').val();
   $('#script').attr({'placeholder': sampleFunctions[mode].toString()})
 }
+$(function () {
+  setMode()
+})
 
-var getInput = function () {
+function getInput () {
   var func = $('#script').val()
   if (!func) {
     func = sampleFunctions[mode]
@@ -29,13 +27,43 @@ var getInput = function () {
   return func
 }
 
-var profile = function (func, size) {
+function run () {
+  $('.results p').hide()
+  // $('.results ul').text('')
+  if (!chart) {
+    generateChart()
+  }
+  round++
+  results.push([])
+  var func = getInput();
+  (function (round) {
+    inputSizes[mode].forEach(function (size) {
+      setTimeout(print.bind(null, size, profile(func, size), round), 0)
+    })
+  })(round)
+}
+
+function profile (func, size) {
   var start = performance.now()
   var results = eval( '(' + func + ')').call(null, size);
   return (performance.now() - start).toFixed(4)
 }
 
-var generateChart = function () {
+
+function print (size, time, round) {
+  // $('.results ul').append('<li><span class="size">'+size+'</span>: <span class="time">'+time+'</span>ms</li>')
+  results[round].push(time)
+
+  chart.load({
+    columns: [
+      ['sizes'].concat(inputSizes[mode]),
+      [function(){return 'round ' + (round + 1)}()].concat(results[round])
+    ]
+  })
+}
+
+
+function generateChart () {
   var format = d3.format(',')
   chart = c3.generate({
     bindto: '#chart',
@@ -67,32 +95,4 @@ var generateChart = function () {
         }
     }
   });
-}
-
-var print = function (size, time, round) {
-  // $('.results ul').append('<li><span class="size">'+size+'</span>: <span class="time">'+time+'</span>ms</li>')
-  results[round].push(time)
-
-  chart.load({
-    columns: [
-      ['sizes'].concat(inputSizes[mode]),
-      [function(){return 'round ' + (round + 1)}()].concat(results[round])
-    ]
-  })
-}
-
-var run = function () {
-  $('.results p').hide()
-  $('.results ul').text('')
-  if (!chart) {
-    generateChart()
-  }
-  round++
-  results.push([])
-  var func = getInput();
-  (function (round) {
-    inputSizes[mode].forEach(function (size) {
-      setTimeout(print.bind(null, size, profile(func, size), round), 0)
-    })
-  })(round)
 }
