@@ -29,15 +29,18 @@ var profile = function (func, input) {
   return Date.now() - start
 }
 
+var results = []
+
 var print = function (size, time) {
   var $line = $('<li>')
   $line.append('<span class="size">' + size + '</span>: ')
   $line.append('<span class="time">' + time + '</span>ms')
   $('.results ul').append($line)
+  results.push(time)
   chart.load({
-    x: size,
     columns: [
-      ['time', time]
+      ['sizes'].concat(inputSizes),
+      ['one'].concat(results)
     ]
   })
 }
@@ -49,11 +52,8 @@ $(function () {
     bindto: '#chart',
     data: {
       columns: [
-        // ['data1', 30, 200, 100, 400, 150, 250],
-        // ['data2', 50, 20, 10, 40, 15, 25],
-        // ['size', 0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000],
       ],
-      // x: 'size'
+      x: 'sizes'
     },
     axis: {
       y: {
@@ -66,10 +66,11 @@ $(function () {
   });
 })
 
+var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
 var run = function () {
   $('.results ul').text('')
+  results = []
   var func = getInput()
-  var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
   inputSizes.forEach(function (size) {
     setTimeout(function(){print(size, profile(func, size))}, 100)
   })
