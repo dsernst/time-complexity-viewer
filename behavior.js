@@ -1,12 +1,5 @@
 // Polyfill performance.now
-performance.now = (function() {
-  return performance.now       ||
-         performance.mozNow    ||
-         performance.msNow     ||
-         performance.oNow      ||
-         performance.webkitNow ||
-         function() { return new Date().getTime(); };
-})();
+performance.now = function () {return performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {return new Date().getTime()}}();
 
 var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
 var results = []
