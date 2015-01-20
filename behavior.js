@@ -44,7 +44,40 @@ var profile = function (func, input) {
   return (performance.now() - start).toFixed(4)
 }
 
-var print = function (size, time) {
+var generateChart = function () {
+  chart = c3.generate({
+    bindto: '#chart',
+    legend: {show: false},
+    data: {
+      columns: [],
+      x: 'sizes'
+    },
+    axis: {
+      y: {
+        label: {
+          text: 'milliseconds (ms)',
+          position: 'outer-middle'
+        }
+      },
+      x: {
+        label: {
+          text: 'input size (n)',
+          position: 'outer-center'
+        }
+      }
+    },
+    tooltip: {
+        format: {
+            title: function (d) { return 'n = ' + format(d); },
+            value: function (value) {
+                return format(value) + " ms";
+            }
+        }
+    }
+  });
+}
+
+var print = function (size, time, round) {
   // var $line = $('<li>')
   // $line.append('<span class="size">' + size + '</span>: ')
   // $line.append('<span class="time">' + time + '</span>ms')
@@ -64,43 +97,12 @@ var run = function () {
   var format = d3.format(',')
   round++
   if (!chart) {
-    chart = c3.generate({
-      bindto: '#chart',
-      legend: {show: false},
-      data: {
-        columns: [
-        ],
-        x: 'sizes'
-      },
-      axis: {
-        y: {
-          label: {
-            text: 'milliseconds (ms)',
-            position: 'outer-middle'
-          }
-        },
-        x: {
-          label: {
-            text: 'input size (n)',
-            position: 'outer-center'
-          }
-        }
-      },
-      tooltip: {
-          format: {
-              title: function (d) { return 'n= ' + format(d); },
-              value: function (value) {
-                  return format(value) + " ms";
-              }
-          }
-      }
-    });
+    generateChart()
   }
-
   $('.results ul').text('')
   results.push([])
   var func = getInput()
   inputSizes.forEach(function (size) {
-    setTimeout(function(){print(size, profile(func, size))}, 100)
+    setTimeout(function(){print(size, profile(func, size), round)}, 0)
   })
 }
