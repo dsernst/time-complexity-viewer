@@ -91,8 +91,10 @@ var run = function () {
   }
   $('.results ul').text('')
   results.push([])
-  var func = getInput()
-  inputSizes.forEach(function (size) {
-    setTimeout(function(){print(size, profile(func, size), round)}, 0)
-  })
+  var func = getInput();
+  (function (round) {
+    inputSizes.forEach(function (size) {
+      setTimeout(function(){print(size, profile(func, size), round)}, 0)
+    })
+  })(round)
 }
