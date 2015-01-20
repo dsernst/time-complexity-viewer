@@ -51,7 +51,7 @@ var print = function (size, time) {
   chart.load({
     columns: [
       ['sizes'].concat(inputSizes),
-      ['one'].concat(results)
+      ['first run'].concat(results)
     ]
   })
 }
@@ -70,6 +70,12 @@ $(function () {
       y: {
         label: {
           text: 'milliseconds (ms)',
+          position: 'outer-middle'
+        }
+      },
+      x: {
+        label: {
+          text: 'input size',
           position: 'outer-middle'
         }
       }
