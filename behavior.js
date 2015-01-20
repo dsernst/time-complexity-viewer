@@ -37,7 +37,7 @@ var getInput = function () {
 var profile = function (func, input) {
   var start = performance.now()
   var results = eval( '(' + func + ')').call(null, input);
-  return performance.now() - start
+  return (performance.now() - start).toFixed(4)
 }
 
 var results = []
