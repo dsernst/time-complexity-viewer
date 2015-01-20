@@ -1,22 +1,25 @@
-var inputFunc = ''
+function sampleFunc (n) {
+  for (var i = 0; i < n; i++) {
+    3 * n
+    n > 9000
+    "cat" + "dog" === n
+    12122124 - 12313 % n
+    Math.floor(n / 124)
+  }
+  return 'this is an example'
+}
+$(function() {
+  $('#script').attr({'placeholder': sampleFunc.toString()})
+})
 
 var getInput = function () {
-  return $('#script').val()
+  return $('#script').val() || sampleFunc
 }
 
 var profile = function (func, input) {
   var start = Date.now()
   var results = eval( '(' + func + ')').call(null, input);
   return Date.now() - start
-}
-
-var sample = function (n) {
-  for (var i = 0; i < n; i++) {
-    3 * 1023
-    10 + 2
-    12122124 - 12313
-    Math.floor(124 / 12534)
-  }
 }
 
 var run = function () {
