@@ -1,7 +1,12 @@
 // Polyfill performance.now
 performance.now = function () {return performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {return new Date().getTime()}}();
 
-var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
+var inputSizes = {
+  number: [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000],
+  string: [],
+  array: []
+}
+var mode = "number"
 var results = []
 var round = -1
 var chart
@@ -77,7 +82,7 @@ var print = function (size, time, round) {
 
   chart.load({
     columns: [
-      ['sizes'].concat(inputSizes),
+      ['sizes'].concat(inputSizes[mode]),
       [function(){return 'round ' + (round + 1)}()].concat(results[round])
     ]
   })
@@ -93,7 +98,7 @@ var run = function () {
   results.push([])
   var func = getInput();
   (function (round) {
-    inputSizes.forEach(function (size) {
+    inputSizes[mode].forEach(function (size) {
       setTimeout(print.bind(null, size, profile(func, size), round), 0)
     })
   })(round)
