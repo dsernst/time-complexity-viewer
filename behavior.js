@@ -31,13 +31,14 @@ var getInput = function () {
   return func
 }
 
-var profile = function (func, input) {
+var profile = function (func, size) {
   var start = performance.now()
-  var results = eval( '(' + func + ')').call(null, input);
+  var results = eval( '(' + func + ')').call(null, size);
   return (performance.now() - start).toFixed(4)
 }
 
 var generateChart = function () {
+  var format = d3.format(',')
   chart = c3.generate({
     bindto: '#chart',
     legend: {show: false},
@@ -84,17 +85,16 @@ var print = function (size, time, round) {
 
 var run = function () {
   $('.results p').hide()
-  var format = d3.format(',')
-  round++
+  $('.results ul').text('')
   if (!chart) {
     generateChart()
   }
-  $('.results ul').text('')
+  round++
   results.push([])
   var func = getInput();
   (function (round) {
     inputSizes.forEach(function (size) {
-      setTimeout(function(){print(size, profile(func, size), round)}, 0)
+      setTimeout(print.bind(null, size, profile(func, size), round), 0)
     })
   })(round)
 }
