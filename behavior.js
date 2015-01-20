@@ -8,6 +8,7 @@ performance.now = (function() {
          function() { return new Date().getTime(); };
 })();
 
+var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
 
 function sampleFunc (n) {
   var a
@@ -43,10 +44,10 @@ var profile = function (func, input) {
 var results = []
 
 var print = function (size, time) {
-  var $line = $('<li>')
-  $line.append('<span class="size">' + size + '</span>: ')
-  $line.append('<span class="time">' + time + '</span>ms')
-  $('.results ul').append($line)
+  // var $line = $('<li>')
+  // $line.append('<span class="size">' + size + '</span>: ')
+  // $line.append('<span class="time">' + time + '</span>ms')
+  // $('.results ul').append($line)
   results.push(time)
   chart.load({
     columns: [
@@ -58,7 +59,8 @@ var print = function (size, time) {
 
 var chart
 
-$(function () {
+var run = function () {
+  $('.results p').hide()
   chart = c3.generate({
     bindto: '#chart',
     legend: {show: false},
@@ -82,10 +84,7 @@ $(function () {
       }
     }
   });
-})
 
-var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
-var run = function () {
   $('.results ul').text('')
   results = []
   var func = getInput()
