@@ -10,6 +10,7 @@ performance.now = (function() {
 
 var inputSizes = [0,1,2,5,10,25,75,250,1000,5000,20000,100000,500000,3000000]
 var results = []
+var round = -1
 var chart
 
 function sampleFunc (n) {
@@ -48,53 +49,56 @@ var print = function (size, time) {
   // $line.append('<span class="size">' + size + '</span>: ')
   // $line.append('<span class="time">' + time + '</span>ms')
   // $('.results ul').append($line)
-  results.push(time)
+  results[round].push(time)
+
   chart.load({
     columns: [
       ['sizes'].concat(inputSizes),
-      ['first run'].concat(results)
+      [function(){return 'round ' + (round + 1)}()].concat(results[round])
     ]
   })
 }
 
-
 var run = function () {
   $('.results p').hide()
-  var format = d3.format(',');
-  chart = c3.generate({
-    bindto: '#chart',
-    legend: {show: false},
-    data: {
-      columns: [
-      ],
-      x: 'sizes'
-    },
-    axis: {
-      y: {
-        label: {
-          text: 'milliseconds (ms)',
-          position: 'outer-middle'
+  var format = d3.format(',')
+  round++
+  if (!chart) {
+    chart = c3.generate({
+      bindto: '#chart',
+      legend: {show: false},
+      data: {
+        columns: [
+        ],
+        x: 'sizes'
+      },
+      axis: {
+        y: {
+          label: {
+            text: 'milliseconds (ms)',
+            position: 'outer-middle'
+          }
+        },
+        x: {
+          label: {
+            text: 'input size (n)',
+            position: 'outer-center'
+          }
         }
       },
-      x: {
-        label: {
-          text: 'input size (n)',
-          position: 'outer-center'
-        }
+      tooltip: {
+          format: {
+              title: function (d) { return 'n= ' + format(d); },
+              value: function (value) {
+                  return format(value) + " ms";
+              }
+          }
       }
-    },
-    tooltip: {
-        format: {
-            title: function (d) { return 'n= ' + format(d); },
-            value: function (value) {
-                return format(value) + " ms";
-            }
-        }
-    }
-  });
+    });
+  }
 
   $('.results ul').text('')
-  results = []
+  results.push([])
   var func = getInput()
   inputSizes.forEach(function (size) {
     setTimeout(function(){print(size, profile(func, size))}, 100)
