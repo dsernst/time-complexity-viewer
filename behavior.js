@@ -4,16 +4,16 @@ performance.now = function () {return performance.now || performance.mozNow || p
 var results = []
 var round = -1
 var chart
-var userInput
+var userInputs
 var mode
 
 function setMode () {
   mode = $('.inputArea select').val()
   $('#script').attr({'placeholder': sampleFunctions[mode].toString()})
-  userInput = JSON.parse($('.results textarea').val())
-  if (_.find(sampleInputs, function (input) {return "" + input === "" + userInput})) {
-    userInput = sampleInputs[mode]
-    $('.results textarea').val(JSON.stringify(userInput))
+  userInputs = JSON.parse($('.results textarea').val())
+  if (_.find(sampleInputs, function (input) {return "" + input === "" + userInputs})) {
+    userInputs = sampleInputs[mode]
+    $('.results textarea').val(JSON.stringify(userInputs))
   }
 }
 $(function () {
@@ -22,6 +22,7 @@ $(function () {
 })
 
 function getInput () {
+  userInputs = JSON.parse($('.results textarea').val())
   var func = $('#script').val()
   if (!func) {
     func = sampleFunctions[mode]
@@ -40,7 +41,7 @@ function run () {
   results.push([])
   var func = getInput();
   (function (round) {
-    inputs[mode].forEach(function (size) {
+    userInputs.forEach(function (size) {
       setTimeout(print.bind(null, size, profile(func, size), round), 0)
     })
   })(round)
@@ -53,7 +54,7 @@ function profile (func, size) {
 }
 
 function print (size, time, round) {
-  var inputSizes = inputs[mode].map(function (input) {
+  var inputSizes = userInputs.map(function (input) {
     if (mode !== 'number') {
       return input.length
     }
