@@ -31,7 +31,6 @@ var sampleFunctions = {
     buildPowerSet(uniqSortedChars, '')
 
     return results
-}
   },
   array: function sampleArrayFunc (arr) {
     var secondArray = []

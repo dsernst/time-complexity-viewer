@@ -11,27 +11,20 @@ var results = []
 var round = -1
 var chart
 
-function sampleFunc (n) {
-  var a
-  for (var i = 0; i < n; i++) {
-    a = 3 * n
-    a += n > 9000
-    Infinity;
-    a += 12122124 - 12313 % n
-    "cat" + "dog" === n
-    a += Math.floor(n / 124)
-  }
-  return 'this is an example'
-}
 $(function() {
-  $('#script').attr({'placeholder': sampleFunc.toString()})
+  setMode()
 })
+
+var setMode = function() {
+  mode = $('.inputArea select').val();
+  $('#script').attr({'placeholder': sampleFunctions[mode].toString()})
+}
 
 var getInput = function () {
   var func = $('#script').val()
   if (!func) {
-    func = sampleFunc
-    $('#script').val(sampleFunc.toString())
+    func = sampleFunctions[mode]
+    $('#script').val(sampleFunctions[mode].toString())
   }
   return func
 }
