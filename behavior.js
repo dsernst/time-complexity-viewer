@@ -1,3 +1,14 @@
+// Polyfill performance.now
+performance.now = (function() {
+  return performance.now       ||
+         performance.mozNow    ||
+         performance.msNow     ||
+         performance.oNow      ||
+         performance.webkitNow ||
+         function() { return new Date().getTime(); };
+})();
+
+
 function sampleFunc (n) {
   var a
   for (var i = 0; i < n; i++) {
@@ -24,9 +35,9 @@ var getInput = function () {
 }
 
 var profile = function (func, input) {
-  var start = Date.now()
+  var start = performance.now()
   var results = eval( '(' + func + ')').call(null, input);
-  return Date.now() - start
+  return performance.now() - start
 }
 
 var results = []
