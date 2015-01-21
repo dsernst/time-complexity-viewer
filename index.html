@@ -20,23 +20,26 @@
 
   <body>
     <h1 class="text-center">The Time Complexity Viewer</h1>
-    <div class="inputArea col-md-5">
-      <h3>Enter a function to profile:</h3>
-      <select class="form-control" onchange="setMode()">
-        <option value="number">Input type: Number</option>
-        <option value="array">Input type: Array</option>
-        <option value="string">Input type: String</option>
-      </select>
-      <samp><textarea id="script" class="form-control" rows="20"></textarea></samp><br>
-      <button class="btn btn-primary btn-block" onclick="run()">Go!</button>
-    </div>
-    <div class="results col-md-5">
-      <h3>Results:</h3>
-      <p>Paste in a function and hit go!</p>
-      <div style="min-height: 290px"><div id="chart"></div></div>
-      <lable>Inputs:</label>
-      <samp><textarea class="form-control" rows="7"></textarea></samp>
-      <ul></ul>
-    </div>
+    <div class="container">
+      <div class="inputArea col-md-5">
+        <h3>Enter a function to profile:</h3>
+        <select class="form-control" onchange="setMode()">
+          <option value="number">Input type: Number</option>
+          <option value="array">Input type: Array</option>
+          <option value="string">Input type: String</option>
+        </select>
+        <samp><textarea id="script" class="form-control" rows="20"></textarea></samp><br>
+        <button class="btn btn-primary btn-block" onclick="run()">Go!</button>
+      </div>
+      <div class="results col-md-5">
+        <h3>Results:</h3>
+        <p>Paste in a function and hit go!</p>
+        <div style="min-height: 290px"><div id="chart"></div></div>
+        <lable>Inputs:</label>
+        <samp><textarea class="form-control" rows="7"></textarea></samp>
+        <ul></ul>
+      </div>
+     </div>
+    <footer><a href="http://mvp.dsernst.com" target="_blank">View on GitHub</a>&nbsp;&nbsp; | &nbsp;&nbsp;Made by <a href="http://dsernst.com" target="_blank">dsernst</a></footer>
   </body>
 </html>

@@ -37,7 +37,7 @@ var sampleFunctions = {
     var beAwesommmmmmmmmme = 0
     for (var i = 1; i < arr.length; i++) {
       beAwesommmmmmmmmme++
-      secondArray.push(Math.pow(beAwesommmmmmmmmme * Math.PI, 2))
+      secondArray.push(Math.pow( beAwesommmmmmmmmme * Math.PI, 2))
       if (secondArray[i] === arr[i]) {
         youGetAPony()
       }
