@@ -2,6 +2,7 @@
 performance.now = function () {return performance.now || performance.mozNow || performance.msNow || performance.oNow || performance.webkitNow || function () {return new Date().getTime()}}()
 
 var results = []
+var workers = []
 var round = -1
 var chart
 var userInputs
@@ -34,25 +35,30 @@ function getInput () {
 function run () {
   $('.results p').hide()
   // $('.results ul').text('')
-  if (!chart) {
-    generateChart()
-  }
   round++
   results.push([])
+  workers.push([])
   var func = getInput();
   (function (round) {
-    var workers = []
-    userInputs.forEach(function (input) {
-      if (!!window.Worker) {
-        workers.push(new Worker("worker.js"))
-        workers[workers.length - 1].postMessage([func, input])
-        workers[workers.length - 1].onmessage = function(e) {
-          print(input, e.data, round)
+      userInputs.forEach(function (input) {
+        if (!!window.Worker) {
+          // setTimeout(function () {
+            workers[round].push(new Worker("worker.js"))
+            var message = []
+            message.push(JSON.stringify(func))
+            message.push(JSON.stringify(input))
+            workers[round][workers[round].length - 1].postMessage(message)
+            workers[round][workers[round].length - 1].onmessage = function(e) {
+              if (!chart) {
+                generateChart()
+              }
+              print(input, e.data, round)
+            }
+          // }, 50)
+        } else {
+          setTimeout(print.bind(null, input, profile(func, input), round), 0)
         }
-      } else {
-        setTimeout(print.bind(null, input, profile(func, input), round), 0)
-      }
-    })
+      })
   })(round)
 }
 
