@@ -44,10 +44,9 @@ function run () {
     var workers = []
     userInputs.forEach(function (input) {
       if (!!window.Worker) {
-        workers.push(new Worker("worker.js"));
+        workers.push(new Worker("worker.js"))
         workers[workers.length - 1].postMessage([func, input])
         workers[workers.length - 1].onmessage = function(e) {
-          console.log(e.data)
           print(input, e.data, round)
         }
       } else {
