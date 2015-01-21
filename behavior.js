@@ -41,15 +41,25 @@ function run () {
   results.push([])
   var func = getInput();
   (function (round) {
-    userInputs.forEach(function (size) {
-      setTimeout(print.bind(null, size, profile(func, size), round), 0)
+    var workers = []
+    userInputs.forEach(function (input) {
+      if (!!window.Worker) {
+        workers.push(new Worker("worker.js"));
+        workers[workers.length - 1].postMessage([func, input])
+        workers[workers.length - 1].onmessage = function(e) {
+          console.log(e.data)
+          print(input, e.data, round)
+        }
+      } else {
+        setTimeout(print.bind(null, input, profile(func, input), round), 0)
+      }
     })
   })(round)
 }
 
-function profile (func, size) {
+function profile (func, input) {
   var start = performance.now()
-  var results = eval( '(' + func + ')').call(null, size)
+  var results = eval( '(' + func + ')').call(null, input)
   return (performance.now() - start).toFixed(4)
 }
 
