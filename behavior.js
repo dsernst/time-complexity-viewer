@@ -60,6 +60,9 @@ function run () {
         }
       })
   })(round)
+  if (round === 0) {
+    run()
+  }
 }
 
 function profile (func, input) {
