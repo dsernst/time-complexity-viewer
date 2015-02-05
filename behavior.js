@@ -27,8 +27,11 @@ function getInput () {
   var func = $('#script').val()
   if (!func) {
     func = sampleFunctions[mode]
-    $('#script').val(sampleFunctions[mode].toString())
+    $('#script').val(func.toString())
   }
+  // Convert function expressions to function declarations
+  func = func.toString().replace(/^var\s\w+\s?=\s?/, '');
+  $('#script').val(func)
   return func
 }
 
@@ -60,9 +63,6 @@ function run () {
         }
       })
   })(round)
-  if (round === 0) {
-    run()
-  }
 }
 
 function profile (func, input) {
