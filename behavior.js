@@ -30,7 +30,8 @@ function getInput () {
     $('#script').val(func.toString())
   }
   // Convert function expressions to function declarations
-  func = func.toString().replace(/^var\s\w+\s?=\s?/, '');
+  func = func.toString().replace(/^var\s\w+\s?=\s?/, '')
+  func = func.toString().replace(/;\s*$/, '')
   $('#script').val(func)
   return func
 }
