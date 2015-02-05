@@ -4,12 +4,11 @@ var sampleFunctions = {
     for (var i = 0; i < n; i++) {
       a = 3 * n
       a += n > 9000
-      Infinity;
       a += 12122124 - 12313 % n
       "cat" + "dog" === n
       a += Math.floor(n / 124)
     }
-    return 'this is an example'
+    return "this is an example. Use your favorite expressions. The return value isn't used"
   },
   string: function sampleStringFunc (str) {
     var uniqs = {}
@@ -34,10 +33,10 @@ var sampleFunctions = {
   },
   array: function sampleArrayFunc (arr) {
     var secondArray = []
-    var beAwesommmmmmmmmme = 0
+    var beAwesommmme = 0
     for (var i = 1; i < arr.length; i++) {
-      beAwesommmmmmmmmme++
-      secondArray.push(Math.pow( beAwesommmmmmmmmme * Math.PI, 2))
+      beAwesommmme++
+      secondArray.push(Math.pow( beAwesommmme * Math.PI, 2))
       if (secondArray[i] === arr[i]) {
         youGetAPony()
       }

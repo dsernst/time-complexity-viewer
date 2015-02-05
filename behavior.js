@@ -31,6 +31,7 @@ function getInput () {
   }
   // Convert function expressions to function declarations
   func = func.toString().replace(/^var\s\w+\s?=\s?/, '')
+  // Remove trailing semicolon, which screws up eval
   func = func.toString().replace(/;\s*$/, '')
   $('#script').val(func)
   return func
@@ -66,12 +67,6 @@ function run () {
   })(round)
 }
 
-function profile (func, input) {
-  var start = performance.now()
-  var results = eval( '(' + func + ')').call(null, input)
-  return (performance.now() - start).toFixed(4)
-}
-
 function print (size, time, round) {
   var inputSizes = userInputs.map(function (input) {
     if (mode !== 'number') {
@@ -99,29 +94,15 @@ function generateChart () {
   chart = c3.generate({
     bindto: '#chart',
     legend: {show: false},
-    data: {
-      columns: []
-    },
+    data: {columns: []},
     axis: {
-      y: {
-        label: {
-          text: 'milliseconds (ms)',
-          position: 'outer-middle'
-        }
-      },
-      x: {
-        label: {
-          text: 'input size (n)',
-          position: 'outer-center'
-        }
-      }
+      y: {label: {text: 'milliseconds (ms)', position: 'outer-middle'}},
+      x: {label: {text: 'input size (n)', position: 'outer-center'}}
     },
     tooltip: {
       format: {
         title: function (d) { return 'n = ' + format(d) },
-        value: function (value) {
-          return format(value) + " ms"
-        }
+        value: function (value) {return format(value) + " ms"}
       }
     }
   })
