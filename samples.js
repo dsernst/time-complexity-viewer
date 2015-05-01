@@ -8,7 +8,7 @@ var sampleFunctions = {
       "cat" + "dog" === n
       a += Math.floor(n / 124)
     }
-    return "this is an example. Use your favorite expressions. The return value isn't used"
+    return "This is just an example. Use this box to input a function to profile. The return value won't be used."
   },
   string: function sampleStringFunc (str) {
     var uniqs = {}
