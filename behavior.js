@@ -130,3 +130,28 @@ var QueryString = function () {
   }
     return query_string;
 } ();
+
+function checkURLparams() {
+  if (QueryString.inputType) {
+    // should already be a string
+    // check if its an acceptable type ['number', 'array', 'string']
+      // if so, overwrite the input dropdown to match that type
+  }
+  if (QueryString.inputFunction) {
+    // probably a string? with new lines? and spaces? does it need to be JSON parsed?
+    // lets stick it in the input function textarea.
+  }
+  if (QueryString.inputArgs) {
+    // hopefully a string
+    // stick it in the input arguments textarea
+  }
+}
+
+function generateURLparams () {
+  // like checkURLparams, but in reverse!
+  // save the inputType, inputFunction, and inputArgs as strings
+  // construct a url parameter for these three values
+  // stick it onto the current url, with a `?`
+    // we might need to clear the current window.location.search
+  // and then set window.location? so it can just be copied and pasted? simplest solution for now
+}
